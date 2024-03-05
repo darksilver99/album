@@ -196,46 +196,110 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                             color:
                                 FlutterFlowTheme.of(context).secondaryBackground,
                           ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
+                          child: Stack(
                             children: [
-                              Expanded(
-                                child: Builder(
-                                  builder: (context) {
-                                    final photoList2 =
-                                        FFAppState().album2.toList();
-                                    if (photoList2.isEmpty) {
-                                      return NoPhotoViewWidget();
-                                    }
-                                    return FlutterFlowSwipeableStack(
-                                      onSwipeFn: (index) {},
-                                      onLeftSwipe: (index) {},
-                                      onRightSwipe: (index) {},
-                                      onUpSwipe: (index) {},
-                                      onDownSwipe: (index) {},
-                                      itemBuilder: (context, photoList2Index) {
-                                        final photoList2Item =
-                                            photoList2[photoList2Index];
-                                        return ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(0.0),
-                                          child: Image.file(
-                                            File(photoList2Item),
-                                            width: double.infinity,
-                                            height: double.infinity,
-                                            fit: BoxFit.cover,
-                                          ),
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Builder(
+                                      builder: (context) {
+                                        final photoList2 =
+                                            FFAppState().album2.toList();
+                                        if (photoList2.isEmpty) {
+                                          return NoPhotoViewWidget();
+                                        }
+                                        return FlutterFlowSwipeableStack(
+                                          onSwipeFn: (index) {},
+                                          onLeftSwipe: (index) {},
+                                          onRightSwipe: (index) {},
+                                          onUpSwipe: (index) {},
+                                          onDownSwipe: (index) {},
+                                          itemBuilder: (context, photoList2Index) {
+                                            final photoList2Item =
+                                                photoList2[photoList2Index];
+                                            return ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(0.0),
+                                              child: Image.file(
+                                                File(photoList2Item),
+                                                width: double.infinity,
+                                                height: double.infinity,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            );
+                                          },
+                                          itemCount: photoList2.length,
+                                          controller:
+                                              _model.swipeableStackController2,
+                                          loop: true,
+                                          cardDisplayCount: 3,
+                                          scale: 0.9,
+                                          cardPadding: EdgeInsets.all(0.0),
                                         );
                                       },
-                                      itemCount: photoList2.length,
-                                      controller:
-                                          _model.swipeableStackController2,
-                                      loop: true,
-                                      cardDisplayCount: 3,
-                                      scale: 0.9,
-                                      cardPadding: EdgeInsets.all(0.0),
-                                    );
-                                  },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(1.0, -1.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 8.0, 8.0, 0.0),
+                                  child: Container(
+                                    width: 32.0,
+                                    height: 32.0,
+                                    decoration: BoxDecoration(
+                                      color:
+                                      FlutterFlowTheme.of(context).tertiary,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        var confirmDialogResponse =
+                                            await showDialog<bool>(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text(
+                                                      'Remove background?'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              false),
+                                                      child: Text('Cancel'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              true),
+                                                      child: Text('Confirm'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            ) ??
+                                                false;
+                                        if (confirmDialogResponse) {
+                                          setState(() {});
+                                        }
+                                      },
+                                      child: Icon(
+                                        Icons.content_cut_rounded,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        size: 22.0,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],
