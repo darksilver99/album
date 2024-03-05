@@ -109,7 +109,11 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
                             ),
                             Expanded(
                               child: Text(
-                                'Album 1',
+                                'Album 1 (${formatNumber(
+                                  FFAppState().album1.length,
+                                  formatType: FormatType.decimal,
+                                  decimalType: DecimalType.automatic,
+                                )})',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -167,7 +171,11 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
                             ),
                             Expanded(
                               child: Text(
-                                'Album 2',
+                                'Album 2 (${formatNumber(
+                                  FFAppState().album2.length,
+                                  formatType: FormatType.decimal,
+                                  decimalType: DecimalType.automatic,
+                                )})',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -225,7 +233,11 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
                             ),
                             Expanded(
                               child: Text(
-                                'Album 3',
+                                'Album 3 (${formatNumber(
+                                  FFAppState().album3.length,
+                                  formatType: FormatType.decimal,
+                                  decimalType: DecimalType.automatic,
+                                )})',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -283,7 +295,11 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
                             ),
                             Expanded(
                               child: Text(
-                                'Album 4',
+                                'Album 4 (${formatNumber(
+                                  FFAppState().album4.length,
+                                  formatType: FormatType.decimal,
+                                  decimalType: DecimalType.automatic,
+                                )})',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
