@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_swipeable_stack.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -49,6 +50,58 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            var confirmDialogResponse = await showDialog<bool>(
+                  context: context,
+                  builder: (alertDialogContext) {
+                    return AlertDialog(
+                      title: Text('Confirm ?'),
+                      actions: [
+                        TextButton(
+                          onPressed: () =>
+                              Navigator.pop(alertDialogContext, false),
+                          child: Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () =>
+                              Navigator.pop(alertDialogContext, true),
+                          child: Text('Confirm'),
+                        ),
+                      ],
+                    );
+                  },
+                ) ??
+                false;
+            if (confirmDialogResponse) {
+              await actions.mergePhoto(
+                null!,
+                null!,
+                null!,
+                null!,
+              );
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    'Sucess',
+                    style: TextStyle(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                    ),
+                  ),
+                  duration: Duration(milliseconds: 2000),
+                  backgroundColor: FlutterFlowTheme.of(context).secondary,
+                ),
+              );
+            }
+          },
+          backgroundColor: FlutterFlowTheme.of(context).primary,
+          elevation: 8.0,
+          child: Icon(
+            Icons.save_rounded,
+            color: FlutterFlowTheme.of(context).info,
+            size: 24.0,
+          ),
+        ),
         body: SafeArea(
           top: true,
           child: Column(
