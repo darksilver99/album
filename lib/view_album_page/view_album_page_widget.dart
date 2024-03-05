@@ -49,7 +49,12 @@ class _ViewAlbumPageWidgetState extends State<ViewAlbumPageWidget> {
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
             child: GridView(
-              padding: EdgeInsets.zero,
+              padding: EdgeInsets.fromLTRB(
+                0,
+                16.0,
+                0,
+                0,
+              ),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 16.0,

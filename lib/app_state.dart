@@ -29,6 +29,10 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _album4 = prefs.getStringList('ff_album4') ?? _album4;
     });
+    _safeInit(() {
+      _quartPhotoList =
+          prefs.getStringList('ff_quartPhotoList') ?? _quartPhotoList;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -176,6 +180,41 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInAlbum4(int _index, String _value) {
     _album4.insert(_index, _value);
     prefs.setStringList('ff_album4', _album4);
+  }
+
+  List<String> _quartPhotoList = [];
+  List<String> get quartPhotoList => _quartPhotoList;
+  set quartPhotoList(List<String> _value) {
+    _quartPhotoList = _value;
+    prefs.setStringList('ff_quartPhotoList', _value);
+  }
+
+  void addToQuartPhotoList(String _value) {
+    _quartPhotoList.add(_value);
+    prefs.setStringList('ff_quartPhotoList', _quartPhotoList);
+  }
+
+  void removeFromQuartPhotoList(String _value) {
+    _quartPhotoList.remove(_value);
+    prefs.setStringList('ff_quartPhotoList', _quartPhotoList);
+  }
+
+  void removeAtIndexFromQuartPhotoList(int _index) {
+    _quartPhotoList.removeAt(_index);
+    prefs.setStringList('ff_quartPhotoList', _quartPhotoList);
+  }
+
+  void updateQuartPhotoListAtIndex(
+    int _index,
+    String Function(String) updateFn,
+  ) {
+    _quartPhotoList[_index] = updateFn(_quartPhotoList[_index]);
+    prefs.setStringList('ff_quartPhotoList', _quartPhotoList);
+  }
+
+  void insertAtIndexInQuartPhotoList(int _index, String _value) {
+    _quartPhotoList.insert(_index, _value);
+    prefs.setStringList('ff_quartPhotoList', _quartPhotoList);
   }
 }
 

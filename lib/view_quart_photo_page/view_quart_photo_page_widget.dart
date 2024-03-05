@@ -1,3 +1,4 @@
+import '/components/no_photo_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -47,9 +48,45 @@ class _ViewQuartPhotoPageWidgetState extends State<ViewQuartPhotoPageWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [],
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+            child: Builder(
+              builder: (context) {
+                final quartPhotoList = FFAppState().quartPhotoList.toList();
+                if (quartPhotoList.isEmpty) {
+                  return NoPhotoViewWidget();
+                }
+                return GridView.builder(
+                  padding: EdgeInsets.fromLTRB(
+                    0,
+                    16.0,
+                    0,
+                    16.0,
+                  ),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 8.0,
+                    mainAxisSpacing: 8.0,
+                    childAspectRatio: 1.0,
+                  ),
+                  scrollDirection: Axis.vertical,
+                  itemCount: quartPhotoList.length,
+                  itemBuilder: (context, quartPhotoListIndex) {
+                    final quartPhotoListItem =
+                        quartPhotoList[quartPhotoListIndex];
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.network(
+                        'https://picsum.photos/seed/72/600',
+                        width: 300.0,
+                        height: 200.0,
+                        fit: BoxFit.cover,
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
           ),
         ),
       ),
