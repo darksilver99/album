@@ -7,9 +7,20 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 Future insertPhotoToAlbum(
-  FFUploadedFile? photo,
+  String? photo,
   String? album,
 ) async {
   // Add your function code here!
-  FFAppState().album1 = [];
+  switch (album) {
+    case 'album1':
+      FFAppState().addToAlbum1(photo!);
+    case 'album2':
+      FFAppState().addToAlbum2(photo!);
+    case 'album3':
+      FFAppState().addToAlbum3(photo!);
+    case 'album4':
+      FFAppState().addToAlbum4(photo!);
+    default:
+      print("no album selected");
+  }
 }

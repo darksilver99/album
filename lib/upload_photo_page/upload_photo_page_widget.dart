@@ -66,7 +66,7 @@ class _UploadPhotoPageWidgetState extends State<UploadPhotoPageWidget> {
                       if (selectedMedia != null &&
                           selectedMedia.every((m) =>
                               validateFileFormat(m.storagePath, context))) {
-                        setState(() => _model.isDataUploading = true);
+                        setState(() => _model.isDataUploading1 = true);
                         var selectedUploadedFiles = <FFUploadedFile>[];
 
                         try {
@@ -80,12 +80,12 @@ class _UploadPhotoPageWidgetState extends State<UploadPhotoPageWidget> {
                                   ))
                               .toList();
                         } finally {
-                          _model.isDataUploading = false;
+                          _model.isDataUploading1 = false;
                         }
                         if (selectedUploadedFiles.length ==
                             selectedMedia.length) {
                           setState(() {
-                            _model.uploadedLocalFile =
+                            _model.uploadedLocalFile1 =
                                 selectedUploadedFiles.first;
                           });
                         } else {
@@ -94,8 +94,8 @@ class _UploadPhotoPageWidgetState extends State<UploadPhotoPageWidget> {
                         }
                       }
 
-                      if (_model.uploadedLocalFile != null &&
-                          (_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                      if (_model.uploadedLocalFile1 != null &&
+                          (_model.uploadedLocalFile1.bytes?.isNotEmpty ??
                               false)) {
                         await showModalBottomSheet(
                           isScrollControlled: true,
@@ -120,13 +120,13 @@ class _UploadPhotoPageWidgetState extends State<UploadPhotoPageWidget> {
                         if (_model.selectedAlbum != null &&
                             _model.selectedAlbum != '') {
                           await actions.insertPhotoToAlbum(
-                            _model.uploadedLocalFile,
+                            'path',
                             _model.selectedAlbum,
                           );
                         }
                         setState(() {
-                          _model.isDataUploading = false;
-                          _model.uploadedLocalFile =
+                          _model.isDataUploading1 = false;
+                          _model.uploadedLocalFile1 =
                               FFUploadedFile(bytes: Uint8List.fromList([]));
                         });
                       }
@@ -165,8 +165,82 @@ class _UploadPhotoPageWidgetState extends State<UploadPhotoPageWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(32.0, 0.0, 32.0, 0.0),
                   child: FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
+                    onPressed: () async {
+                      final selectedMedia = await selectMedia(
+                        maxWidth: 1200.00,
+                        imageQuality: 90,
+                        mediaSource: MediaSource.photoGallery,
+                        multiImage: false,
+                      );
+                      if (selectedMedia != null &&
+                          selectedMedia.every((m) =>
+                              validateFileFormat(m.storagePath, context))) {
+                        setState(() => _model.isDataUploading2 = true);
+                        var selectedUploadedFiles = <FFUploadedFile>[];
+
+                        try {
+                          selectedUploadedFiles = selectedMedia
+                              .map((m) => FFUploadedFile(
+                                    name: m.storagePath.split('/').last,
+                                    bytes: m.bytes,
+                                    height: m.dimensions?.height,
+                                    width: m.dimensions?.width,
+                                    blurHash: m.blurHash,
+                                  ))
+                              .toList();
+                        } finally {
+                          _model.isDataUploading2 = false;
+                        }
+                        if (selectedUploadedFiles.length ==
+                            selectedMedia.length) {
+                          setState(() {
+                            _model.uploadedLocalFile2 =
+                                selectedUploadedFiles.first;
+                          });
+                        } else {
+                          setState(() {});
+                          return;
+                        }
+                      }
+
+                      if (_model.uploadedLocalFile2 != null &&
+                          (_model.uploadedLocalFile2.bytes?.isNotEmpty ??
+                              false)) {
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          enableDrag: false,
+                          context: context,
+                          builder: (context) {
+                            return GestureDetector(
+                              onTap: () => _model.unfocusNode.canRequestFocus
+                                  ? FocusScope.of(context)
+                                      .requestFocus(_model.unfocusNode)
+                                  : FocusScope.of(context).unfocus(),
+                              child: Padding(
+                                padding: MediaQuery.viewInsetsOf(context),
+                                child: SelectAlbumViewWidget(),
+                              ),
+                            );
+                          },
+                        ).then((value) =>
+                            safeSetState(() => _model.selectedAlbum2 = value));
+
+                        if (_model.selectedAlbum2 != null &&
+                            _model.selectedAlbum2 != '') {
+                          await actions.insertPhotoToAlbum(
+                            'path',
+                            _model.selectedAlbum2,
+                          );
+                        }
+                        setState(() {
+                          _model.isDataUploading2 = false;
+                          _model.uploadedLocalFile2 =
+                              FFUploadedFile(bytes: Uint8List.fromList([]));
+                        });
+                      }
+
+                      setState(() {});
                     },
                     text: 'Gallery',
                     icon: FaIcon(

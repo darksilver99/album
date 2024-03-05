@@ -14,12 +14,18 @@ class UploadPhotoPageModel extends FlutterFlowModel<UploadPhotoPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
+  bool isDataUploading1 = false;
+  FFUploadedFile uploadedLocalFile1 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
   // Stores action output result for [Bottom Sheet - SelectAlbumView] action in Button widget.
   String? selectedAlbum;
+  bool isDataUploading2 = false;
+  FFUploadedFile uploadedLocalFile2 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+
+  // Stores action output result for [Bottom Sheet - SelectAlbumView] action in Button widget.
+  String? selectedAlbum2;
 
   /// Initialization and disposal methods.
 

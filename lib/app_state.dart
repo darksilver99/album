@@ -23,6 +23,12 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _album2 = prefs.getStringList('ff_album2') ?? _album2;
     });
+    _safeInit(() {
+      _album3 = prefs.getStringList('ff_album3') ?? _album3;
+    });
+    _safeInit(() {
+      _album4 = prefs.getStringList('ff_album4') ?? _album4;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -100,6 +106,76 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInAlbum2(int _index, String _value) {
     _album2.insert(_index, _value);
     prefs.setStringList('ff_album2', _album2);
+  }
+
+  List<String> _album3 = [];
+  List<String> get album3 => _album3;
+  set album3(List<String> _value) {
+    _album3 = _value;
+    prefs.setStringList('ff_album3', _value);
+  }
+
+  void addToAlbum3(String _value) {
+    _album3.add(_value);
+    prefs.setStringList('ff_album3', _album3);
+  }
+
+  void removeFromAlbum3(String _value) {
+    _album3.remove(_value);
+    prefs.setStringList('ff_album3', _album3);
+  }
+
+  void removeAtIndexFromAlbum3(int _index) {
+    _album3.removeAt(_index);
+    prefs.setStringList('ff_album3', _album3);
+  }
+
+  void updateAlbum3AtIndex(
+    int _index,
+    String Function(String) updateFn,
+  ) {
+    _album3[_index] = updateFn(_album3[_index]);
+    prefs.setStringList('ff_album3', _album3);
+  }
+
+  void insertAtIndexInAlbum3(int _index, String _value) {
+    _album3.insert(_index, _value);
+    prefs.setStringList('ff_album3', _album3);
+  }
+
+  List<String> _album4 = [];
+  List<String> get album4 => _album4;
+  set album4(List<String> _value) {
+    _album4 = _value;
+    prefs.setStringList('ff_album4', _value);
+  }
+
+  void addToAlbum4(String _value) {
+    _album4.add(_value);
+    prefs.setStringList('ff_album4', _album4);
+  }
+
+  void removeFromAlbum4(String _value) {
+    _album4.remove(_value);
+    prefs.setStringList('ff_album4', _album4);
+  }
+
+  void removeAtIndexFromAlbum4(int _index) {
+    _album4.removeAt(_index);
+    prefs.setStringList('ff_album4', _album4);
+  }
+
+  void updateAlbum4AtIndex(
+    int _index,
+    String Function(String) updateFn,
+  ) {
+    _album4[_index] = updateFn(_album4[_index]);
+    prefs.setStringList('ff_album4', _album4);
+  }
+
+  void insertAtIndexInAlbum4(int _index, String _value) {
+    _album4.insert(_index, _value);
+    prefs.setStringList('ff_album4', _album4);
   }
 }
 
