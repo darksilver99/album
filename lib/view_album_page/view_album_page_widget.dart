@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '/components/no_photo_view_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
@@ -475,8 +477,8 @@ class _ViewAlbumPageWidgetState extends State<ViewAlbumPageWidget>
                                               type: PageTransitionType.fade,
                                               child:
                                                   FlutterFlowExpandedImageView(
-                                                image: Image.network(
-                                                  photoList1Item,
+                                                image: Image.file(
+                                                  File(photoList1Item),
                                                   fit: BoxFit.contain,
                                                 ),
                                                 allowRotation: false,
@@ -492,8 +494,8 @@ class _ViewAlbumPageWidgetState extends State<ViewAlbumPageWidget>
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
-                                            child: Image.network(
-                                              photoList1Item,
+                                            child: Image.file(
+                                              File(photoList1Item),
                                               width: 300.0,
                                               height: 200.0,
                                               fit: BoxFit.cover,
@@ -629,8 +631,8 @@ class _ViewAlbumPageWidgetState extends State<ViewAlbumPageWidget>
                                               type: PageTransitionType.fade,
                                               child:
                                                   FlutterFlowExpandedImageView(
-                                                image: Image.network(
-                                                  photoList2Item,
+                                                image: Image.file(
+                                                  File(photoList2Item),
                                                   fit: BoxFit.contain,
                                                 ),
                                                 allowRotation: false,
@@ -646,8 +648,8 @@ class _ViewAlbumPageWidgetState extends State<ViewAlbumPageWidget>
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
-                                            child: Image.network(
-                                              photoList2Item,
+                                            child: Image.file(
+                                              File(photoList2Item),
                                               width: 300.0,
                                               height: 200.0,
                                               fit: BoxFit.cover,
@@ -783,8 +785,8 @@ class _ViewAlbumPageWidgetState extends State<ViewAlbumPageWidget>
                                               type: PageTransitionType.fade,
                                               child:
                                                   FlutterFlowExpandedImageView(
-                                                image: Image.network(
-                                                  photoList3Item,
+                                                image: Image.file(
+                                                  File(photoList3Item),
                                                   fit: BoxFit.contain,
                                                 ),
                                                 allowRotation: false,
@@ -800,8 +802,8 @@ class _ViewAlbumPageWidgetState extends State<ViewAlbumPageWidget>
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
-                                            child: Image.network(
-                                              photoList3Item,
+                                            child: Image.file(
+                                              File(photoList3Item),
                                               width: 300.0,
                                               height: 200.0,
                                               fit: BoxFit.cover,
@@ -937,8 +939,8 @@ class _ViewAlbumPageWidgetState extends State<ViewAlbumPageWidget>
                                               type: PageTransitionType.fade,
                                               child:
                                                   FlutterFlowExpandedImageView(
-                                                image: Image.network(
-                                                  photoList4Item,
+                                                image: Image.file(
+                                                  File(photoList4Item),
                                                   fit: BoxFit.contain,
                                                 ),
                                                 allowRotation: false,
@@ -954,8 +956,8 @@ class _ViewAlbumPageWidgetState extends State<ViewAlbumPageWidget>
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
-                                            child: Image.network(
-                                              photoList4Item,
+                                            child: Image.file(
+                                              File(photoList4Item),
                                               width: 300.0,
                                               height: 200.0,
                                               fit: BoxFit.cover,
