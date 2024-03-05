@@ -23,7 +23,7 @@ class ViewQuartPhotoPageModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in FloatingActionButton widget.
   String? rsFolderName;
 
   /// Initialization and disposal methods.
