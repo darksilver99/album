@@ -126,7 +126,7 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: FaIcon(
               FontAwesomeIcons.cameraRetro,
-              size: 24.0,
+              size: 38.0,
             ),
             label: 'Home',
             tooltip: '',
@@ -134,7 +134,7 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: FaIcon(
               FontAwesomeIcons.folderOpen,
-              size: 24.0,
+              size: 38.0,
             ),
             label: 'Home',
             tooltip: '',
@@ -142,7 +142,7 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: FaIcon(
               FontAwesomeIcons.photoVideo,
-              size: 24.0,
+              size: 38.0,
             ),
             label: 'Home',
             tooltip: '',
@@ -150,7 +150,7 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: FaIcon(
               FontAwesomeIcons.solidSave,
-              size: 24.0,
+              size: 38.0,
             ),
             label: 'Home',
             tooltip: '',
