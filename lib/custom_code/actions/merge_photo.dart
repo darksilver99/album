@@ -6,11 +6,22 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future mergePhoto(
-  dynamic photo1,
-  dynamic photo2,
-  dynamic photo3,
-  dynamic photo4,
-) async {
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as path;
+import 'dart:io';
+
+Future mergePhoto(dynamic photo) async {
   // Add your function code here!
+  final bytes = await photo.capture();
+  final directory = await getTemporaryDirectory();
+  final appDir = path.join(directory.path, 'com.silver.album');
+  await Directory(appDir).create(recursive: true);
+
+  final filePath = path.join(appDir,
+      '${DateTime.now().toString().replaceAll(" ", "").replaceAll(":", "").replaceAll(" ", "").replaceAll(".", "")}.png');
+  final file = File(filePath);
+  await file.writeAsBytes(bytes!);
+  FFAppState().update(() {
+    FFAppState().addToQuartPhotoList(filePath);
+  });
 }

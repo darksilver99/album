@@ -74,14 +74,11 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
             if (confirmDialogResponse) {
               await actions.mergePhoto(
                 null!,
-                null!,
-                null!,
-                null!,
               );
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
-                    'Sucess',
+                    'Success',
                     style: TextStyle(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
