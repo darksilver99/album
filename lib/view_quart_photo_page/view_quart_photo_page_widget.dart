@@ -1,12 +1,14 @@
 import 'dart:io';
 
 import '/components/no_photo_view_widget.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'view_quart_photo_page_model.dart';
 export 'view_quart_photo_page_model.dart';
@@ -76,13 +78,40 @@ class _ViewQuartPhotoPageWidgetState extends State<ViewQuartPhotoPageWidget> {
                   itemBuilder: (context, quartPhotoListIndex) {
                     final quartPhotoListItem =
                         quartPhotoList[quartPhotoListIndex];
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.file(
-                        File(quartPhotoListItem),
-                        width: 300.0,
-                        height: 200.0,
-                        fit: BoxFit.cover,
+                    return InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: FlutterFlowExpandedImageView(
+                              image: Image.file(
+                                File(quartPhotoListItem),
+                                fit: BoxFit.contain,
+                              ),
+                              allowRotation: false,
+                              tag: quartPhotoListItem,
+                              useHeroAnimation: true,
+                            ),
+                          ),
+                        );
+                      },
+                      child: Hero(
+                        tag: quartPhotoListItem,
+                        transitionOnUserGestures: true,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.file(
+                            File(quartPhotoListItem),
+                            width: 300.0,
+                            height: 200.0,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                     );
                   },
