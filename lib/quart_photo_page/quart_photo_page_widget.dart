@@ -106,9 +106,6 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                   photo: _model.rsPath,
                   folderName: _model.rsFolder,
                 ));
-                setState(() {
-                  _model.isLoading = false;
-                });
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
@@ -124,6 +121,9 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                   ),
                 );
               }
+              setState(() {
+                _model.isLoading = false;
+              });
             }
 
             setState(() {});
