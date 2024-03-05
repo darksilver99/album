@@ -3,6 +3,7 @@ import '/components/no_folder_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -215,6 +216,39 @@ class _SelectQuartAlbumViewWidgetState
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               Navigator.pop(context, folderListItem);
+                            },
+                            onLongPress: () async {
+                              var confirmDialogResponse =
+                                  await showDialog<bool>(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: Text('Delete folder?'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: Text('Cancel'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: Text('Confirm'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ) ??
+                                      false;
+                              if (confirmDialogResponse) {
+                                await actions.removeItemInQuartPhotoList(
+                                  folderListItem,
+                                );
+                                setState(() {
+                                  FFAppState().removeAtIndexFromQuartAlbumList(
+                                      folderListIndex);
+                                });
+                              }
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
