@@ -57,7 +57,24 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 32.0, 16.0, 16.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Select Album',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Inter',
+                            fontSize: 24.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -92,7 +109,7 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
                             ),
                             Expanded(
                               child: Text(
-                                'Album1',
+                                'Album 1',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -101,6 +118,11 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
+                            ),
+                            Icon(
+                              Icons.navigate_next_rounded,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 24.0,
                             ),
                           ],
                         ),
@@ -145,7 +167,7 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
                             ),
                             Expanded(
                               child: Text(
-                                'Album2',
+                                'Album 2',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -154,6 +176,11 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
+                            ),
+                            Icon(
+                              Icons.navigate_next_rounded,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 24.0,
                             ),
                           ],
                         ),
@@ -198,7 +225,7 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
                             ),
                             Expanded(
                               child: Text(
-                                'Album3',
+                                'Album 3',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -207,6 +234,11 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
+                            ),
+                            Icon(
+                              Icons.navigate_next_rounded,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 24.0,
                             ),
                           ],
                         ),
@@ -251,7 +283,7 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
                             ),
                             Expanded(
                               child: Text(
-                                'Album4',
+                                'Album 4',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -260,6 +292,11 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
+                            ),
+                            Icon(
+                              Icons.navigate_next_rounded,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 24.0,
                             ),
                           ],
                         ),

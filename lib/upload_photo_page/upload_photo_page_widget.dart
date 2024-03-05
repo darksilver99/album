@@ -1,10 +1,13 @@
 import '/components/select_album_view_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -18,10 +21,71 @@ class UploadPhotoPageWidget extends StatefulWidget {
   State<UploadPhotoPageWidget> createState() => _UploadPhotoPageWidgetState();
 }
 
-class _UploadPhotoPageWidgetState extends State<UploadPhotoPageWidget> {
+class _UploadPhotoPageWidgetState extends State<UploadPhotoPageWidget>
+    with TickerProviderStateMixin {
   late UploadPhotoPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = {
+    'buttonOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 300.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 300.ms,
+          begin: Offset(0.0, 36.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'buttonOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: Offset(0.0, 36.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'buttonOnPageLoadAnimation3': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 500.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 500.ms,
+          begin: Offset(0.0, 36.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+  };
 
   @override
   void initState() {
@@ -122,6 +186,21 @@ class _UploadPhotoPageWidgetState extends State<UploadPhotoPageWidget> {
                           selectedMedia!.first.filePath,
                           _model.selectedAlbum,
                         );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Insert into album already.',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            duration: Duration(milliseconds: 2000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).success,
+                          ),
+                        );
                       }
                       setState(() {
                         _model.isDataUploading1 = false;
@@ -158,7 +237,8 @@ class _UploadPhotoPageWidgetState extends State<UploadPhotoPageWidget> {
                     ),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                ),
+                ).animateOnPageLoad(
+                    animationsMap['buttonOnPageLoadAnimation1']!),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(32.0, 0.0, 32.0, 15.0),
@@ -230,6 +310,21 @@ class _UploadPhotoPageWidgetState extends State<UploadPhotoPageWidget> {
                           selectedMedia!.first.filePath,
                           _model.selectedAlbum2,
                         );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Insert into album already.',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            duration: Duration(milliseconds: 2000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).success,
+                          ),
+                        );
                       }
                       setState(() {
                         _model.isDataUploading2 = false;
@@ -266,19 +361,45 @@ class _UploadPhotoPageWidgetState extends State<UploadPhotoPageWidget> {
                     ),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                ),
+                ).animateOnPageLoad(
+                    animationsMap['buttonOnPageLoadAnimation2']!),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(32.0, 0.0, 32.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    setState(() {
-                      FFAppState().album1 = [];
-                      FFAppState().album2 = [];
-                      FFAppState().album3 = [];
-                      FFAppState().album4 = [];
-                      FFAppState().quartPhotoList = [];
-                    });
+                    var confirmDialogResponse = await showDialog<bool>(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              title: Text('Clear photo?'),
+                              content: Text(
+                                  'All photo in album and all Combinations photo will delete.'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext, false),
+                                  child: Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext, true),
+                                  child: Text('Confirm'),
+                                ),
+                              ],
+                            );
+                          },
+                        ) ??
+                        false;
+                    if (confirmDialogResponse) {
+                      setState(() {
+                        FFAppState().album1 = [];
+                        FFAppState().album2 = [];
+                        FFAppState().album3 = [];
+                        FFAppState().album4 = [];
+                        FFAppState().quartPhotoList = [];
+                      });
+                    }
                   },
                   text: 'Clear Photo',
                   icon: Icon(
@@ -306,7 +427,8 @@ class _UploadPhotoPageWidgetState extends State<UploadPhotoPageWidget> {
                     ),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                ),
+                ).animateOnPageLoad(
+                    animationsMap['buttonOnPageLoadAnimation3']!),
               ),
             ],
           ),

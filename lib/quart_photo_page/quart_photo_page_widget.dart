@@ -129,7 +129,7 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
           child: Icon(
             Icons.save_rounded,
             color: FlutterFlowTheme.of(context).info,
-            size: 24.0,
+            size: 32.0,
           ),
         ),
         body: SafeArea(
