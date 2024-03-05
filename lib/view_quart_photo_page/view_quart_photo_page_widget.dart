@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '/components/no_photo_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -76,8 +78,8 @@ class _ViewQuartPhotoPageWidgetState extends State<ViewQuartPhotoPageWidget> {
                         quartPhotoList[quartPhotoListIndex];
                     return ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
-                      child: Image.network(
-                        'https://picsum.photos/seed/72/600',
+                      child: Image.file(
+                        File(quartPhotoListItem),
                         width: 300.0,
                         height: 200.0,
                         fit: BoxFit.cover,
