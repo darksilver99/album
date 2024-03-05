@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/components/select_album_view_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';

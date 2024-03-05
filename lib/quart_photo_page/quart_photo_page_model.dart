@@ -1,4 +1,6 @@
+import '/backend/schema/structs/index.dart';
 import '/components/no_photo_view_widget.dart';
+import '/components/select_quart_album_view_widget.dart';
 import '/flutter_flow/flutter_flow_swipeable_stack.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -28,6 +30,10 @@ class QuartPhotoPageModel extends FlutterFlowModel<QuartPhotoPageWidget> {
   late CardSwiperController swipeableStackController3;
   // State field(s) for SwipeableStack widget.
   late CardSwiperController swipeableStackController4;
+  // Stores action output result for [Custom Action - mergePhoto] action in FloatingActionButton widget.
+  String? rsPath;
+  // Stores action output result for [Bottom Sheet - SelectQuartAlbumView] action in FloatingActionButton widget.
+  String? rsFolder;
 
   /// Initialization and disposal methods.
 
