@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/backend/schema/structs/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
@@ -30,8 +31,23 @@ class FFAppState extends ChangeNotifier {
       _album4 = prefs.getStringList('ff_album4') ?? _album4;
     });
     _safeInit(() {
-      _quartPhotoList =
-          prefs.getStringList('ff_quartPhotoList') ?? _quartPhotoList;
+      _quartAlbumList =
+          prefs.getStringList('ff_quartAlbumList') ?? _quartAlbumList;
+    });
+    _safeInit(() {
+      _quartPhotoList = prefs
+              .getStringList('ff_quartPhotoList')
+              ?.map((x) {
+                try {
+                  return QuartPhotoStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _quartPhotoList;
     });
   }
 
@@ -182,39 +198,80 @@ class FFAppState extends ChangeNotifier {
     prefs.setStringList('ff_album4', _album4);
   }
 
-  List<String> _quartPhotoList = [];
-  List<String> get quartPhotoList => _quartPhotoList;
-  set quartPhotoList(List<String> _value) {
+  List<String> _quartAlbumList = [];
+  List<String> get quartAlbumList => _quartAlbumList;
+  set quartAlbumList(List<String> _value) {
+    _quartAlbumList = _value;
+    prefs.setStringList('ff_quartAlbumList', _value);
+  }
+
+  void addToQuartAlbumList(String _value) {
+    _quartAlbumList.add(_value);
+    prefs.setStringList('ff_quartAlbumList', _quartAlbumList);
+  }
+
+  void removeFromQuartAlbumList(String _value) {
+    _quartAlbumList.remove(_value);
+    prefs.setStringList('ff_quartAlbumList', _quartAlbumList);
+  }
+
+  void removeAtIndexFromQuartAlbumList(int _index) {
+    _quartAlbumList.removeAt(_index);
+    prefs.setStringList('ff_quartAlbumList', _quartAlbumList);
+  }
+
+  void updateQuartAlbumListAtIndex(
+    int _index,
+    String Function(String) updateFn,
+  ) {
+    _quartAlbumList[_index] = updateFn(_quartAlbumList[_index]);
+    prefs.setStringList('ff_quartAlbumList', _quartAlbumList);
+  }
+
+  void insertAtIndexInQuartAlbumList(int _index, String _value) {
+    _quartAlbumList.insert(_index, _value);
+    prefs.setStringList('ff_quartAlbumList', _quartAlbumList);
+  }
+
+  List<QuartPhotoStruct> _quartPhotoList = [];
+  List<QuartPhotoStruct> get quartPhotoList => _quartPhotoList;
+  set quartPhotoList(List<QuartPhotoStruct> _value) {
     _quartPhotoList = _value;
-    prefs.setStringList('ff_quartPhotoList', _value);
+    prefs.setStringList(
+        'ff_quartPhotoList', _value.map((x) => x.serialize()).toList());
   }
 
-  void addToQuartPhotoList(String _value) {
+  void addToQuartPhotoList(QuartPhotoStruct _value) {
     _quartPhotoList.add(_value);
-    prefs.setStringList('ff_quartPhotoList', _quartPhotoList);
+    prefs.setStringList('ff_quartPhotoList',
+        _quartPhotoList.map((x) => x.serialize()).toList());
   }
 
-  void removeFromQuartPhotoList(String _value) {
+  void removeFromQuartPhotoList(QuartPhotoStruct _value) {
     _quartPhotoList.remove(_value);
-    prefs.setStringList('ff_quartPhotoList', _quartPhotoList);
+    prefs.setStringList('ff_quartPhotoList',
+        _quartPhotoList.map((x) => x.serialize()).toList());
   }
 
   void removeAtIndexFromQuartPhotoList(int _index) {
     _quartPhotoList.removeAt(_index);
-    prefs.setStringList('ff_quartPhotoList', _quartPhotoList);
+    prefs.setStringList('ff_quartPhotoList',
+        _quartPhotoList.map((x) => x.serialize()).toList());
   }
 
   void updateQuartPhotoListAtIndex(
     int _index,
-    String Function(String) updateFn,
+    QuartPhotoStruct Function(QuartPhotoStruct) updateFn,
   ) {
     _quartPhotoList[_index] = updateFn(_quartPhotoList[_index]);
-    prefs.setStringList('ff_quartPhotoList', _quartPhotoList);
+    prefs.setStringList('ff_quartPhotoList',
+        _quartPhotoList.map((x) => x.serialize()).toList());
   }
 
-  void insertAtIndexInQuartPhotoList(int _index, String _value) {
+  void insertAtIndexInQuartPhotoList(int _index, QuartPhotoStruct _value) {
     _quartPhotoList.insert(_index, _value);
-    prefs.setStringList('ff_quartPhotoList', _quartPhotoList);
+    prefs.setStringList('ff_quartPhotoList',
+        _quartPhotoList.map((x) => x.serialize()).toList());
   }
 }
 

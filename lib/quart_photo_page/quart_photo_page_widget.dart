@@ -5,6 +5,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 
 import '/components/no_photo_view_widget.dart';
+import '/components/select_quart_album_view_widget.dart';
 import '/flutter_flow/flutter_flow_swipeable_stack.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -88,13 +89,13 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                 final deviceInfo = DeviceInfoPlugin();
                 final info = await deviceInfo.androidInfo;
                 if (int.parse(info.version.release) >= 13) {
-                  await actions.mergePhoto(
-                    widgetController
+                  _model.rsPath = await actions.mergePhoto(
+                      widgetController
                   );
                 } else {
                   var status = await Permission.storage.request();
                   if (status.isGranted) {
-                    await actions.mergePhoto(
+                    _model.rsPath = await actions.mergePhoto(
                         widgetController
                     );
                   }
@@ -102,29 +103,57 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
               } else {
                 var status = await Permission.storage.request();
                 if (status.isGranted) {
-                  await actions.mergePhoto(
+                  _model.rsPath = await actions.mergePhoto(
                       widgetController
                   );
                 }
               }
-              setState(() {
-                _model.isLoading = false;
-              });
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    'Photo is combinationed success!',
-                    style: TextStyle(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 22.0,
+              await showModalBottomSheet(
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                enableDrag: false,
+                useSafeArea: true,
+                context: context,
+                builder: (context) {
+                  return GestureDetector(
+                    onTap: () => _model.unfocusNode.canRequestFocus
+                        ? FocusScope.of(context)
+                            .requestFocus(_model.unfocusNode)
+                        : FocusScope.of(context).unfocus(),
+                    child: Padding(
+                      padding: MediaQuery.viewInsetsOf(context),
+                      child: SelectQuartAlbumViewWidget(),
                     ),
+                  );
+                },
+              ).then((value) => safeSetState(() => _model.rsFolder = value));
+
+              if (_model.rsFolder != null && _model.rsFolder != '') {
+                FFAppState().addToQuartPhotoList(QuartPhotoStruct(
+                  photo: _model.rsPath,
+                  folderName: _model.rsFolder,
+                ));
+                setState(() {
+                  _model.isLoading = false;
+                });
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      'Photo is combinationed success!',
+                      style: TextStyle(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 22.0,
+                      ),
+                    ),
+                    duration: Duration(milliseconds: 2000),
+                    backgroundColor: FlutterFlowTheme.of(context).secondary,
                   ),
-                  duration: Duration(milliseconds: 2000),
-                  backgroundColor: FlutterFlowTheme.of(context).secondary,
-                ),
-              );
+                );
+              }
             }
+
+            setState(() {});
           },
           backgroundColor: FlutterFlowTheme.of(context).primary,
           elevation: 8.0,
