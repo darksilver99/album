@@ -194,6 +194,7 @@ class _UploadPhotoPageWidgetState extends State<UploadPhotoPageWidget>
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                                 fontWeight: FontWeight.w600,
+                                fontSize: 22.0,
                               ),
                             ),
                             duration: Duration(milliseconds: 2000),
@@ -318,6 +319,7 @@ class _UploadPhotoPageWidgetState extends State<UploadPhotoPageWidget>
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                                 fontWeight: FontWeight.w600,
+                                fontSize: 22.0,
                               ),
                             ),
                             duration: Duration(milliseconds: 2000),

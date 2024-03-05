@@ -85,9 +85,11 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
-                    'Success',
+                    'Photo is combinationed success!',
                     style: TextStyle(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 22.0,
                     ),
                   ),
                   duration: Duration(milliseconds: 2000),
