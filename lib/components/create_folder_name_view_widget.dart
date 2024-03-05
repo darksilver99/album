@@ -148,6 +148,10 @@ class _CreateFolderNameViewWidgetState
                       ),
                       FFButtonWidget(
                         onPressed: () async {
+                          if (_model.formKey.currentState == null ||
+                              !_model.formKey.currentState!.validate()) {
+                            return;
+                          }
                           if (FFAppState()
                               .quartAlbumList
                               .contains(_model.textController.text)) {
