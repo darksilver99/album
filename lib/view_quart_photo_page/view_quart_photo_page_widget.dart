@@ -159,36 +159,47 @@ class _ViewQuartPhotoPageWidgetState extends State<ViewQuartPhotoPageWidget> {
                               itemBuilder: (context, folderListIndex) {
                                 final folderListItem =
                                     folderList[folderListIndex];
-                                return Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 8.0),
-                                      child: FaIcon(
-                                        FontAwesomeIcons.folderOpen,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
+                                return InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    setState(() {
+                                      _model.folderName = folderListItem;
+                                    });
+                                  },
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 8.0),
+                                        child: FaIcon(
+                                          FontAwesomeIcons.folderOpen,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24.0,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      '${folderListItem} (${formatNumber(
-                                        functions.countFileInFolder(
-                                            folderListItem,
-                                            FFAppState()
-                                                .quartPhotoList
-                                                .toList()),
-                                        formatType: FormatType.decimal,
-                                        decimalType: DecimalType.automatic,
-                                      )})',
-                                      textAlign: TextAlign.center,
-                                      maxLines: 1,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
-                                    ),
-                                  ],
+                                      Text(
+                                        '${folderListItem} (${formatNumber(
+                                          functions.countFileInFolder(
+                                              folderListItem,
+                                              FFAppState()
+                                                  .quartPhotoList
+                                                  .toList()),
+                                          formatType: FormatType.decimal,
+                                          decimalType: DecimalType.automatic,
+                                        )})',
+                                        textAlign: TextAlign.center,
+                                        maxLines: 1,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
+                                      ),
+                                    ],
+                                  ),
                                 );
                               },
                             );
