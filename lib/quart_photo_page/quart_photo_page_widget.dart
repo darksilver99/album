@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'quart_photo_page_model.dart';
 export 'quart_photo_page_model.dart';
@@ -80,6 +81,9 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                 ) ??
                 false;
             if (confirmDialogResponse) {
+              setState(() {
+                _model.isLoading = true;
+              });
               if (Platform.isAndroid) {
                 final deviceInfo = DeviceInfoPlugin();
                 final info = await deviceInfo.androidInfo;
@@ -103,6 +107,9 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                   );
                 }
               }
+              setState(() {
+                _model.isLoading = false;
+              });
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
@@ -127,239 +134,254 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: WidgetsToImage(
-            controller: widgetController,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color:
-                                FlutterFlowTheme.of(context).secondaryBackground,
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Builder(
-                                  builder: (context) {
-                                    final photoList1 =
-                                        FFAppState().album1.toList();
-                                    if (photoList1.isEmpty) {
-                                      return NoPhotoViewWidget();
-                                    }
-                                    return FlutterFlowSwipeableStack(
-                                      onSwipeFn: (index) {},
-                                      onLeftSwipe: (index) {},
-                                      onRightSwipe: (index) {},
-                                      onUpSwipe: (index) {},
-                                      onDownSwipe: (index) {},
-                                      itemBuilder: (context, photoList1Index) {
-                                        final photoList1Item =
-                                            photoList1[photoList1Index];
-                                        return ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(0.0),
-                                          child: Image.file(
-                                            File(photoList1Item),
-                                            width: double.infinity,
-                                            height: double.infinity,
-                                            fit: BoxFit.cover,
-                                          ),
+          child: Stack(
+            children: [
+              WidgetsToImage(
+                controller: widgetController,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryBackground,
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Builder(
+                                      builder: (context) {
+                                        final photoList1 =
+                                            FFAppState().album1.toList();
+                                        if (photoList1.isEmpty) {
+                                          return NoPhotoViewWidget();
+                                        }
+                                        return FlutterFlowSwipeableStack(
+                                          onSwipeFn: (index) {},
+                                          onLeftSwipe: (index) {},
+                                          onRightSwipe: (index) {},
+                                          onUpSwipe: (index) {},
+                                          onDownSwipe: (index) {},
+                                          itemBuilder: (context, photoList1Index) {
+                                            final photoList1Item =
+                                                photoList1[photoList1Index];
+                                            return ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(0.0),
+                                              child: Image.file(
+                                                File(photoList1Item),
+                                                width: double.infinity,
+                                                height: double.infinity,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            );
+                                          },
+                                          itemCount: photoList1.length,
+                                          controller:
+                                              _model.swipeableStackController1,
+                                          loop: true,
+                                          cardDisplayCount: 3,
+                                          scale: 0.9,
+                                          cardPadding: EdgeInsets.all(0.0),
                                         );
                                       },
-                                      itemCount: photoList1.length,
-                                      controller:
-                                          _model.swipeableStackController1,
-                                      loop: true,
-                                      cardDisplayCount: 3,
-                                      scale: 0.9,
-                                      cardPadding: EdgeInsets.all(0.0),
-                                    );
-                                  },
-                                ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color:
-                                FlutterFlowTheme.of(context).secondaryBackground,
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Builder(
-                                  builder: (context) {
-                                    final photoList2 =
-                                        FFAppState().album2.toList();
-                                    if (photoList2.isEmpty) {
-                                      return NoPhotoViewWidget();
-                                    }
-                                    return FlutterFlowSwipeableStack(
-                                      onSwipeFn: (index) {},
-                                      onLeftSwipe: (index) {},
-                                      onRightSwipe: (index) {},
-                                      onUpSwipe: (index) {},
-                                      onDownSwipe: (index) {},
-                                      itemBuilder: (context, photoList2Index) {
-                                        final photoList2Item =
-                                            photoList2[photoList2Index];
-                                        return ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(0.0),
-                                          child: Image.file(
-                                            File(photoList2Item),
-                                            width: double.infinity,
-                                            height: double.infinity,
-                                            fit: BoxFit.cover,
-                                          ),
+                          Expanded(
+                            child: Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryBackground,
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Builder(
+                                      builder: (context) {
+                                        final photoList2 =
+                                            FFAppState().album2.toList();
+                                        if (photoList2.isEmpty) {
+                                          return NoPhotoViewWidget();
+                                        }
+                                        return FlutterFlowSwipeableStack(
+                                          onSwipeFn: (index) {},
+                                          onLeftSwipe: (index) {},
+                                          onRightSwipe: (index) {},
+                                          onUpSwipe: (index) {},
+                                          onDownSwipe: (index) {},
+                                          itemBuilder: (context, photoList2Index) {
+                                            final photoList2Item =
+                                                photoList2[photoList2Index];
+                                            return ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(0.0),
+                                              child: Image.file(
+                                                File(photoList2Item),
+                                                width: double.infinity,
+                                                height: double.infinity,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            );
+                                          },
+                                          itemCount: photoList2.length,
+                                          controller:
+                                              _model.swipeableStackController2,
+                                          loop: true,
+                                          cardDisplayCount: 3,
+                                          scale: 0.9,
+                                          cardPadding: EdgeInsets.all(0.0),
                                         );
                                       },
-                                      itemCount: photoList2.length,
-                                      controller:
-                                          _model.swipeableStackController2,
-                                      loop: true,
-                                      cardDisplayCount: 3,
-                                      scale: 0.9,
-                                      cardPadding: EdgeInsets.all(0.0),
-                                    );
-                                  },
-                                ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
+                        ],
                       ),
-                    ],
+                    ),
+                    Expanded(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryBackground,
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Builder(
+                                      builder: (context) {
+                                        final photoList3 =
+                                            FFAppState().album3.toList();
+                                        if (photoList3.isEmpty) {
+                                          return NoPhotoViewWidget();
+                                        }
+                                        return FlutterFlowSwipeableStack(
+                                          onSwipeFn: (index) {},
+                                          onLeftSwipe: (index) {},
+                                          onRightSwipe: (index) {},
+                                          onUpSwipe: (index) {},
+                                          onDownSwipe: (index) {},
+                                          itemBuilder: (context, photoList3Index) {
+                                            final photoList3Item =
+                                                photoList3[photoList3Index];
+                                            return ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(0.0),
+                                              child: Image.file(
+                                                File(photoList3Item),
+                                                width: double.infinity,
+                                                height: double.infinity,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            );
+                                          },
+                                          itemCount: photoList3.length,
+                                          controller:
+                                              _model.swipeableStackController3,
+                                          loop: true,
+                                          cardDisplayCount: 3,
+                                          scale: 0.9,
+                                          cardPadding: EdgeInsets.all(0.0),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryBackground,
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Builder(
+                                      builder: (context) {
+                                        final photoList4 =
+                                            FFAppState().album4.toList();
+                                        if (photoList4.isEmpty) {
+                                          return NoPhotoViewWidget();
+                                        }
+                                        return FlutterFlowSwipeableStack(
+                                          onSwipeFn: (index) {},
+                                          onLeftSwipe: (index) {},
+                                          onRightSwipe: (index) {},
+                                          onUpSwipe: (index) {},
+                                          onDownSwipe: (index) {},
+                                          itemBuilder: (context, photoList4Index) {
+                                            final photoList4Item =
+                                                photoList4[photoList4Index];
+                                            return ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(0.0),
+                                              child: Image.file(
+                                                File(photoList4Item),
+                                                width: double.infinity,
+                                                height: double.infinity,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            );
+                                          },
+                                          itemCount: photoList4.length,
+                                          controller:
+                                              _model.swipeableStackController4,
+                                          loop: true,
+                                          cardDisplayCount: 3,
+                                          scale: 0.9,
+                                          cardPadding: EdgeInsets.all(0.0),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (_model.isLoading)
+                Align(
+                  alignment: AlignmentDirectional(0.0, 0.0),
+                  child: Lottie.asset(
+                    'assets/lottie_animations/Animation_-_1709005578891.json',
+                    width: 150.0,
+                    height: 130.0,
+                    fit: BoxFit.cover,
+                    animate: true,
                   ),
                 ),
-                Expanded(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color:
-                                FlutterFlowTheme.of(context).secondaryBackground,
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Builder(
-                                  builder: (context) {
-                                    final photoList3 =
-                                        FFAppState().album3.toList();
-                                    if (photoList3.isEmpty) {
-                                      return NoPhotoViewWidget();
-                                    }
-                                    return FlutterFlowSwipeableStack(
-                                      onSwipeFn: (index) {},
-                                      onLeftSwipe: (index) {},
-                                      onRightSwipe: (index) {},
-                                      onUpSwipe: (index) {},
-                                      onDownSwipe: (index) {},
-                                      itemBuilder: (context, photoList3Index) {
-                                        final photoList3Item =
-                                            photoList3[photoList3Index];
-                                        return ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(0.0),
-                                          child: Image.file(
-                                            File(photoList3Item),
-                                            width: double.infinity,
-                                            height: double.infinity,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        );
-                                      },
-                                      itemCount: photoList3.length,
-                                      controller:
-                                          _model.swipeableStackController3,
-                                      loop: true,
-                                      cardDisplayCount: 3,
-                                      scale: 0.9,
-                                      cardPadding: EdgeInsets.all(0.0),
-                                    );
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color:
-                                FlutterFlowTheme.of(context).secondaryBackground,
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Builder(
-                                  builder: (context) {
-                                    final photoList4 =
-                                        FFAppState().album4.toList();
-                                    if (photoList4.isEmpty) {
-                                      return NoPhotoViewWidget();
-                                    }
-                                    return FlutterFlowSwipeableStack(
-                                      onSwipeFn: (index) {},
-                                      onLeftSwipe: (index) {},
-                                      onRightSwipe: (index) {},
-                                      onUpSwipe: (index) {},
-                                      onDownSwipe: (index) {},
-                                      itemBuilder: (context, photoList4Index) {
-                                        final photoList4Item =
-                                            photoList4[photoList4Index];
-                                        return ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(0.0),
-                                          child: Image.file(
-                                            File(photoList4Item),
-                                            width: double.infinity,
-                                            height: double.infinity,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        );
-                                      },
-                                      itemCount: photoList4.length,
-                                      controller:
-                                          _model.swipeableStackController4,
-                                      loop: true,
-                                      cardDisplayCount: 3,
-                                      scale: 0.9,
-                                      cardPadding: EdgeInsets.all(0.0),
-                                    );
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+            ],
           ),
         ),
       ),
