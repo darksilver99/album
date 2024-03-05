@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import '/components/no_photo_view_widget.dart';
 import '/flutter_flow/flutter_flow_swipeable_stack.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -72,6 +73,9 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                 builder: (context) {
                                   final photoList1 =
                                       FFAppState().album1.toList();
+                                  if (photoList1.isEmpty) {
+                                    return NoPhotoViewWidget();
+                                  }
                                   return FlutterFlowSwipeableStack(
                                     onSwipeFn: (index) {},
                                     onLeftSwipe: (index) {},
@@ -121,6 +125,9 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                 builder: (context) {
                                   final photoList2 =
                                       FFAppState().album2.toList();
+                                  if (photoList2.isEmpty) {
+                                    return NoPhotoViewWidget();
+                                  }
                                   return FlutterFlowSwipeableStack(
                                     onSwipeFn: (index) {},
                                     onLeftSwipe: (index) {},
@@ -177,6 +184,9 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                 builder: (context) {
                                   final photoList3 =
                                       FFAppState().album3.toList();
+                                  if (photoList3.isEmpty) {
+                                    return NoPhotoViewWidget();
+                                  }
                                   return FlutterFlowSwipeableStack(
                                     onSwipeFn: (index) {},
                                     onLeftSwipe: (index) {},
@@ -226,6 +236,9 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                 builder: (context) {
                                   final photoList4 =
                                       FFAppState().album4.toList();
+                                  if (photoList4.isEmpty) {
+                                    return NoPhotoViewWidget();
+                                  }
                                   return FlutterFlowSwipeableStack(
                                     onSwipeFn: (index) {},
                                     onLeftSwipe: (index) {},
