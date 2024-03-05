@@ -14,5 +14,5 @@ int? countFileInFolder(
   String? folderName,
   List<QuartPhotoStruct>? objectList,
 ) {
-  return 9;
+  return objectList!.where((item) => item.folderName == folderName).length;
 }

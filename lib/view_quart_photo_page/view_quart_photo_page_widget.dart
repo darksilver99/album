@@ -3,12 +3,15 @@ import 'dart:io';
 import '/backend/schema/structs/index.dart';
 import '/components/create_folder_name_view_widget.dart';
 import '/components/no_photo_view_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
@@ -24,15 +27,40 @@ class ViewQuartPhotoPageWidget extends StatefulWidget {
       _ViewQuartPhotoPageWidgetState();
 }
 
-class _ViewQuartPhotoPageWidgetState extends State<ViewQuartPhotoPageWidget> {
+class _ViewQuartPhotoPageWidgetState extends State<ViewQuartPhotoPageWidget>
+    with TickerProviderStateMixin {
   late ViewQuartPhotoPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = {
+    'columnOnActionTriggerAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onActionTrigger,
+      applyInitialState: true,
+      effects: [
+        ShakeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 1000.ms,
+          hz: 10,
+          offset: Offset(0.0, 0.0),
+          rotation: 0.087,
+        ),
+      ],
+    ),
+  };
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => ViewQuartPhotoPageModel());
+
+    setupAnimations(
+      animationsMap.values.where((anim) =>
+          anim.trigger == AnimationTrigger.onActionTrigger ||
+          !anim.applyInitialState),
+      this,
+    );
   }
 
   @override
@@ -171,6 +199,53 @@ class _ViewQuartPhotoPageWidgetState extends State<ViewQuartPhotoPageWidget> {
                                       _model.folderName = folderListItem;
                                     });
                                   },
+                                  onLongPress: () async {
+                                    if (animationsMap[
+                                            'columnOnActionTriggerAnimation'] !=
+                                        null) {
+                                      await animationsMap[
+                                              'columnOnActionTriggerAnimation']!
+                                          .controller
+                                          .forward(from: 0.0);
+                                    }
+                                    var confirmDialogResponse =
+                                        await showDialog<bool>(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text('Delete folder?'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              false),
+                                                      child: Text('Cancel'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              true),
+                                                      child: Text('Confirm'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            ) ??
+                                            false;
+                                    if (confirmDialogResponse) {
+                                      setState(() {
+                                        FFAppState()
+                                            .removeAtIndexFromQuartAlbumList(
+                                                folderListIndex);
+                                        FFAppState().removeFromQuartPhotoList(
+                                            QuartPhotoStruct(
+                                          folderName: folderListItem,
+                                        ));
+                                      });
+                                    }
+                                  },
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -202,6 +277,9 @@ class _ViewQuartPhotoPageWidgetState extends State<ViewQuartPhotoPageWidget> {
                                       ),
                                     ],
                                   ),
+                                ).animateOnActionTrigger(
+                                  animationsMap[
+                                      'columnOnActionTriggerAnimation']!,
                                 );
                               },
                             );
