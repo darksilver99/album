@@ -189,92 +189,15 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                             (context, photoList2Index) {
                                           final photoList2Item =
                                               photoList2[photoList2Index];
-                                          return Stack(
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(0.0),
-                                                child: Image.network(
-                                                  'https://picsum.photos/seed/46/600',
-                                                  width: double.infinity,
-                                                  height: double.infinity,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    1.0, -1.0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 8.0, 8.0, 0.0),
-                                                  child: Container(
-                                                    width: 32.0,
-                                                    height: 32.0,
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .tertiary,
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                    child: InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        var confirmDialogResponse =
-                                                            await showDialog<
-                                                                    bool>(
-                                                                  context:
-                                                                      context,
-                                                                  builder:
-                                                                      (alertDialogContext) {
-                                                                    return AlertDialog(
-                                                                      title: Text(
-                                                                          'Remove background?'),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed: () => Navigator.pop(
-                                                                              alertDialogContext,
-                                                                              false),
-                                                                          child:
-                                                                              Text('Cancel'),
-                                                                        ),
-                                                                        TextButton(
-                                                                          onPressed: () => Navigator.pop(
-                                                                              alertDialogContext,
-                                                                              true),
-                                                                          child:
-                                                                              Text('Confirm'),
-                                                                        ),
-                                                                      ],
-                                                                    );
-                                                                  },
-                                                                ) ??
-                                                                false;
-                                                        if (confirmDialogResponse) {
-                                                          setState(() {});
-                                                        }
-                                                      },
-                                                      child: Icon(
-                                                        Icons
-                                                            .content_cut_rounded,
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                        size: 22.0,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
+                                          return ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(0.0),
+                                            child: Image.network(
+                                              'https://picsum.photos/seed/46/600',
+                                              width: double.infinity,
+                                              height: double.infinity,
+                                              fit: BoxFit.cover,
+                                            ),
                                           );
                                         },
                                         itemCount: photoList2.length,
