@@ -52,84 +52,55 @@ class _ViewQuartPhotoPageWidgetState extends State<ViewQuartPhotoPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        floatingActionButton: Visibility(
+          visible: _model.folderName == null || _model.folderName == '',
+          child: Builder(
+            builder: (context) => FloatingActionButton(
+              onPressed: () async {
+                await showDialog(
+                  context: context,
+                  builder: (dialogContext) {
+                    return Dialog(
+                      elevation: 0,
+                      insetPadding: EdgeInsets.zero,
+                      backgroundColor: Colors.transparent,
+                      alignment: AlignmentDirectional(0.0, 0.0)
+                          .resolve(Directionality.of(context)),
+                      child: GestureDetector(
+                        onTap: () => _model.unfocusNode.canRequestFocus
+                            ? FocusScope.of(context)
+                                .requestFocus(_model.unfocusNode)
+                            : FocusScope.of(context).unfocus(),
+                        child: CreateFolderNameViewWidget(),
+                      ),
+                    );
+                  },
+                ).then(
+                    (value) => safeSetState(() => _model.rsFolderName = value));
+
+                if (_model.rsFolderName != null && _model.rsFolderName != '') {
+                  setState(() {
+                    FFAppState().addToQuartAlbumList(_model.rsFolderName!);
+                  });
+                }
+
+                setState(() {});
+              },
+              backgroundColor: FlutterFlowTheme.of(context).warning,
+              elevation: 8.0,
+              child: FaIcon(
+                FontAwesomeIcons.folderPlus,
+                color: FlutterFlowTheme.of(context).info,
+                size: 24.0,
+              ),
+            ),
+          ),
+        ),
         body: SafeArea(
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              if (_model.folderName == null || _model.folderName == '')
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Builder(
-                      builder: (context) => Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            await showDialog(
-                              context: context,
-                              builder: (dialogContext) {
-                                return Dialog(
-                                  elevation: 0,
-                                  insetPadding: EdgeInsets.zero,
-                                  backgroundColor: Colors.transparent,
-                                  alignment: AlignmentDirectional(0.0, 0.0)
-                                      .resolve(Directionality.of(context)),
-                                  child: GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: CreateFolderNameViewWidget(),
-                                  ),
-                                );
-                              },
-                            ).then((value) => safeSetState(
-                                () => _model.rsFolderName = value));
-
-                            if (_model.rsFolderName != null &&
-                                _model.rsFolderName != '') {
-                              setState(() {
-                                FFAppState()
-                                    .addToQuartAlbumList(_model.rsFolderName!);
-                              });
-                            }
-
-                            setState(() {});
-                          },
-                          text: 'Create new folder',
-                          icon: FaIcon(
-                            FontAwesomeIcons.folderPlus,
-                            size: 16.0,
-                          ),
-                          options: FFButtonOptions(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 8.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Inter',
-                                  color: Colors.white,
-                                  fontSize: 12.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
               Expanded(
                 child: Stack(
                   children: [
@@ -144,7 +115,7 @@ class _ViewQuartPhotoPageWidgetState extends State<ViewQuartPhotoPageWidget> {
                             return GridView.builder(
                               padding: EdgeInsets.fromLTRB(
                                 0,
-                                16.0,
+                                8.0,
                                 0,
                                 16.0,
                               ),

@@ -145,7 +145,7 @@ class _SelectQuartAlbumViewWidgetState
 
                         setState(() {});
                       },
-                      text: 'Create new folder',
+                      text: 'New folder',
                       icon: FaIcon(
                         FontAwesomeIcons.folderPlus,
                         size: 16.0,
@@ -186,7 +186,7 @@ class _SelectQuartAlbumViewWidgetState
                     return GridView.builder(
                       padding: EdgeInsets.fromLTRB(
                         0,
-                        16.0,
+                        0,
                         0,
                         16.0,
                       ),
