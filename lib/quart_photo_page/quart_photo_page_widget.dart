@@ -128,7 +128,7 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
 
             setState(() {});
           },
-          backgroundColor: FlutterFlowTheme.of(context).warning,
+          backgroundColor: FlutterFlowTheme.of(context).error,
           elevation: 8.0,
           child: Icon(
             Icons.save_rounded,

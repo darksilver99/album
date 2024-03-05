@@ -155,13 +155,16 @@ class _CreateFolderNameViewWidgetState
                           if (FFAppState()
                               .quartAlbumList
                               .contains(_model.textController.text)) {
+                            Navigator.pop(context);
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
                                   'Duplicate folder name.',
                                   style: TextStyle(
                                     color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                        .secondaryBackground,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 22.0,
                                   ),
                                 ),
                                 duration: Duration(milliseconds: 2000),
