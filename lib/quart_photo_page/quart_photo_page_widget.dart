@@ -4,6 +4,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 
+import '/backend/schema/structs/index.dart';
 import '/components/no_photo_view_widget.dart';
 import '/components/select_quart_album_view_widget.dart';
 import '/flutter_flow/flutter_flow_swipeable_stack.dart';
