@@ -120,7 +120,7 @@ class _UploadPhotoPageWidgetState extends State<UploadPhotoPageWidget> {
                         if (_model.selectedAlbum != null &&
                             _model.selectedAlbum != '') {
                           await actions.insertPhotoToAlbum(
-                            'path',
+                            selectedMedia!.first.filePath,
                             _model.selectedAlbum,
                           );
                         }
@@ -229,7 +229,7 @@ class _UploadPhotoPageWidgetState extends State<UploadPhotoPageWidget> {
                         if (_model.selectedAlbum2 != null &&
                             _model.selectedAlbum2 != '') {
                           await actions.insertPhotoToAlbum(
-                            'path',
+                            selectedMedia!.first.filePath,
                             _model.selectedAlbum2,
                           );
                         }

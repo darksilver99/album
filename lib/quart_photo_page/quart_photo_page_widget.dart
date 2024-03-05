@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '/flutter_flow/flutter_flow_swipeable_stack.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -82,8 +84,8 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                       return ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(8.0),
-                                        child: Image.network(
-                                          photoList1Item,
+                                        child: Image.file(
+                                          File(photoList1Item),
                                           width: double.infinity,
                                           height: double.infinity,
                                           fit: BoxFit.cover,
@@ -131,8 +133,8 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                       return ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(8.0),
-                                        child: Image.network(
-                                          'https://picsum.photos/seed/46/600',
+                                        child: Image.file(
+                                          File(photoList2Item),
                                           width: double.infinity,
                                           height: double.infinity,
                                           fit: BoxFit.cover,
@@ -187,8 +189,8 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                       return ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(8.0),
-                                        child: Image.network(
-                                          'https://picsum.photos/seed/46/600',
+                                        child: Image.file(
+                                          File(photoList3Item),
                                           width: double.infinity,
                                           height: double.infinity,
                                           fit: BoxFit.cover,
@@ -236,8 +238,8 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                       return ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(8.0),
-                                        child: Image.network(
-                                          'https://picsum.photos/seed/46/600',
+                                        child: Image.file(
+                                          File(photoList4Item),
                                           width: double.infinity,
                                           height: double.infinity,
                                           fit: BoxFit.cover,
