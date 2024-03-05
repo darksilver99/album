@@ -37,6 +37,8 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -64,61 +66,38 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
-                              child: FlutterFlowSwipeableStack(
-                                onSwipeFn: (index) {},
-                                onLeftSwipe: (index) {},
-                                onRightSwipe: (index) {},
-                                onUpSwipe: (index) {},
-                                onDownSwipe: (index) {},
-                                itemBuilder: (context, index) {
-                                  return [
-                                    () => ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/46/600',
-                                            width: double.infinity,
-                                            height: double.infinity,
-                                            fit: BoxFit.cover,
-                                          ),
+                              child: Builder(
+                                builder: (context) {
+                                  final photoList1 =
+                                      FFAppState().album1.toList();
+                                  return FlutterFlowSwipeableStack(
+                                    onSwipeFn: (index) {},
+                                    onLeftSwipe: (index) {},
+                                    onRightSwipe: (index) {},
+                                    onUpSwipe: (index) {},
+                                    onDownSwipe: (index) {},
+                                    itemBuilder: (context, photoList1Index) {
+                                      final photoList1Item =
+                                          photoList1[photoList1Index];
+                                      return ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.network(
+                                          photoList1Item,
+                                          width: double.infinity,
+                                          height: double.infinity,
+                                          fit: BoxFit.cover,
                                         ),
-                                    () => ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/387/600',
-                                            width: double.infinity,
-                                            height: double.infinity,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                    () => ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/495/600',
-                                            width: double.infinity,
-                                            height: double.infinity,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                    () => ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/323/600',
-                                            width: double.infinity,
-                                            height: double.infinity,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                  ][index]();
+                                      );
+                                    },
+                                    itemCount: photoList1.length,
+                                    controller:
+                                        _model.swipeableStackController1,
+                                    loop: true,
+                                    cardDisplayCount: 1,
+                                    scale: 0.9,
+                                  );
                                 },
-                                itemCount: 4,
-                                controller: _model.swipeableStackController1,
-                                loop: true,
-                                cardDisplayCount: 1,
-                                scale: 0.9,
                               ),
                             ),
                           ],

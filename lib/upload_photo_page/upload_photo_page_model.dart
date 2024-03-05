@@ -1,6 +1,9 @@
+import '/components/select_album_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'upload_photo_page_widget.dart' show UploadPhotoPageWidget;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,6 +14,12 @@ class UploadPhotoPageModel extends FlutterFlowModel<UploadPhotoPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+
+  // Stores action output result for [Bottom Sheet - SelectAlbumView] action in Button widget.
+  String? selectedAlbum;
 
   /// Initialization and disposal methods.
 
