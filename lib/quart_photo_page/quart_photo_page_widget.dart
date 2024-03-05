@@ -85,7 +85,7 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                           photoList1[photoList1Index];
                                       return ClipRRect(
                                         borderRadius:
-                                            BorderRadius.circular(8.0),
+                                            BorderRadius.circular(0.0),
                                         child: Image.network(
                                           photoList1Item,
                                           width: double.infinity,
@@ -98,8 +98,9 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                     controller:
                                         _model.swipeableStackController1,
                                     loop: true,
-                                    cardDisplayCount: 1,
+                                    cardDisplayCount: 3,
                                     scale: 0.9,
+                                    cardPadding: EdgeInsets.all(0.0),
                                   );
                                 },
                               ),
@@ -137,7 +138,7 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                           photoList2[photoList2Index];
                                       return ClipRRect(
                                         borderRadius:
-                                            BorderRadius.circular(8.0),
+                                            BorderRadius.circular(0.0),
                                         child: Image.network(
                                           'https://picsum.photos/seed/46/600',
                                           width: double.infinity,
@@ -150,8 +151,9 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                     controller:
                                         _model.swipeableStackController2,
                                     loop: true,
-                                    cardDisplayCount: 1,
+                                    cardDisplayCount: 3,
                                     scale: 0.9,
+                                    cardPadding: EdgeInsets.all(0.0),
                                   );
                                 },
                               ),
@@ -196,7 +198,7 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                           photoList3[photoList3Index];
                                       return ClipRRect(
                                         borderRadius:
-                                            BorderRadius.circular(8.0),
+                                            BorderRadius.circular(0.0),
                                         child: Image.network(
                                           'https://picsum.photos/seed/46/600',
                                           width: double.infinity,
@@ -209,8 +211,9 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                     controller:
                                         _model.swipeableStackController3,
                                     loop: true,
-                                    cardDisplayCount: 1,
+                                    cardDisplayCount: 3,
                                     scale: 0.9,
+                                    cardPadding: EdgeInsets.all(0.0),
                                   );
                                 },
                               ),
@@ -248,7 +251,7 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                           photoList4[photoList4Index];
                                       return ClipRRect(
                                         borderRadius:
-                                            BorderRadius.circular(8.0),
+                                            BorderRadius.circular(0.0),
                                         child: Image.network(
                                           'https://picsum.photos/seed/46/600',
                                           width: double.infinity,
@@ -261,8 +264,9 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                     controller:
                                         _model.swipeableStackController4,
                                     loop: true,
-                                    cardDisplayCount: 1,
+                                    cardDisplayCount: 3,
                                     scale: 0.9,
+                                    cardPadding: EdgeInsets.all(0.0),
                                   );
                                 },
                               ),
