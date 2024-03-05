@@ -184,9 +184,8 @@ class _ViewAlbumPageWidgetState extends State<ViewAlbumPageWidget>
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: FaIcon(
-                                    FontAwesomeIcons.folder,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    FontAwesomeIcons.folderOpen,
+                                    color: FlutterFlowTheme.of(context).error,
                                     size: 52.0,
                                   ),
                                 ),
@@ -242,9 +241,9 @@ class _ViewAlbumPageWidgetState extends State<ViewAlbumPageWidget>
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: FaIcon(
-                                    FontAwesomeIcons.folder,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    FontAwesomeIcons.folderOpen,
+                                    color:
+                                        FlutterFlowTheme.of(context).secondary,
                                     size: 52.0,
                                   ),
                                 ),
@@ -300,9 +299,9 @@ class _ViewAlbumPageWidgetState extends State<ViewAlbumPageWidget>
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: FaIcon(
-                                    FontAwesomeIcons.folder,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    FontAwesomeIcons.folderOpen,
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
                                     size: 52.0,
                                   ),
                                 ),
@@ -358,9 +357,8 @@ class _ViewAlbumPageWidgetState extends State<ViewAlbumPageWidget>
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: FaIcon(
-                                    FontAwesomeIcons.folder,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    FontAwesomeIcons.folderOpen,
+                                    color: FlutterFlowTheme.of(context).warning,
                                     size: 52.0,
                                   ),
                                 ),

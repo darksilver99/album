@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'select_album_view_model.dart';
@@ -66,7 +67,7 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
                       'Select Album',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Inter',
-                            fontSize: 24.0,
+                            fontSize: 26.0,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
@@ -102,10 +103,14 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Icon(
-                              Icons.photo_album_rounded,
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 42.0,
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 4.0, 0.0),
+                              child: FaIcon(
+                                FontAwesomeIcons.folderOpen,
+                                color: FlutterFlowTheme.of(context).error,
+                                size: 42.0,
+                              ),
                             ),
                             Expanded(
                               child: Text(
@@ -164,10 +169,14 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Icon(
-                              Icons.photo_album_rounded,
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 42.0,
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 4.0, 0.0),
+                              child: FaIcon(
+                                FontAwesomeIcons.folderOpen,
+                                color: FlutterFlowTheme.of(context).secondary,
+                                size: 42.0,
+                              ),
                             ),
                             Expanded(
                               child: Text(
@@ -226,10 +235,14 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Icon(
-                              Icons.photo_album_rounded,
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 42.0,
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 4.0, 0.0),
+                              child: FaIcon(
+                                FontAwesomeIcons.folderOpen,
+                                color: FlutterFlowTheme.of(context).tertiary,
+                                size: 42.0,
+                              ),
                             ),
                             Expanded(
                               child: Text(
@@ -288,10 +301,14 @@ class _SelectAlbumViewWidgetState extends State<SelectAlbumViewWidget> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Icon(
-                              Icons.photo_album_rounded,
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 42.0,
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 4.0, 0.0),
+                              child: FaIcon(
+                                FontAwesomeIcons.folderOpen,
+                                color: FlutterFlowTheme.of(context).warning,
+                                size: 42.0,
+                              ),
                             ),
                             Expanded(
                               child: Text(
