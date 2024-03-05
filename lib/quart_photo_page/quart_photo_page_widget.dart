@@ -352,12 +352,25 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
               if (_model.isLoading)
                 Align(
                   alignment: AlignmentDirectional(0.0, 0.0),
-                  child: Lottie.asset(
-                    'assets/lottie_animations/Animation_-_1709005578891.json',
-                    width: 150.0,
-                    height: 130.0,
-                    fit: BoxFit.cover,
-                    animate: true,
+                  child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Color(0x5C000000),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Lottie.asset(
+                          'assets/lottie_animations/Animation_-_1709624548266.json',
+                          width: 150.0,
+                          height: 130.0,
+                          fit: BoxFit.cover,
+                          animate: true,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
             ],
