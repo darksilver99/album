@@ -100,8 +100,9 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                                     controller:
                                         _model.swipeableStackController1,
                                     loop: true,
-                                    cardDisplayCount: 1,
+                                    cardDisplayCount: 3,
                                     scale: 0.9,
+                                    cardPadding: EdgeInsets.zero,
                                   );
                                 },
                               ),
