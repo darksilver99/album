@@ -146,10 +146,10 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                     ),
                   );
                 }
-                setState(() {
-                  _model.isLoading = false;
-                });
               }
+              setState(() {
+                _model.isLoading = false;
+              });
             }
 
             setState(() {});
