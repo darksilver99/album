@@ -104,49 +104,52 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                 },
               ).then((value) => safeSetState(() => _model.rsPath2 = value));
 
-              await showModalBottomSheet(
-                isScrollControlled: true,
-                backgroundColor: Colors.transparent,
-                enableDrag: false,
-                useSafeArea: true,
-                context: context,
-                builder: (context) {
-                  return GestureDetector(
-                    onTap: () => _model.unfocusNode.canRequestFocus
-                        ? FocusScope.of(context)
-                            .requestFocus(_model.unfocusNode)
-                        : FocusScope.of(context).unfocus(),
-                    child: Padding(
-                      padding: MediaQuery.viewInsetsOf(context),
-                      child: SelectQuartAlbumViewWidget(),
+              if (_model.rsPath2 != null && _model.rsPath2 != '') {
+                await showModalBottomSheet(
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  enableDrag: false,
+                  useSafeArea: true,
+                  context: context,
+                  builder: (context) {
+                    return GestureDetector(
+                      onTap: () => _model.unfocusNode.canRequestFocus
+                          ? FocusScope.of(context)
+                              .requestFocus(_model.unfocusNode)
+                          : FocusScope.of(context).unfocus(),
+                      child: Padding(
+                        padding: MediaQuery.viewInsetsOf(context),
+                        child: SelectQuartAlbumViewWidget(),
+                      ),
+                    );
+                  },
+                ).then((value) => safeSetState(() => _model.rsFolder = value));
+
+                if (_model.rsFolder != null && _model.rsFolder != '') {
+                  FFAppState().addToQuartPhotoList(QuartPhotoStruct(
+                    photo: _model.rsPath2,
+                    folderName: _model.rsFolder,
+                  ));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        'Photo is combinationed success!',
+                        style: TextStyle(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 22.0,
+                        ),
+                      ),
+                      duration: Duration(milliseconds: 2000),
+                      backgroundColor: FlutterFlowTheme.of(context).secondary,
                     ),
                   );
-                },
-              ).then((value) => safeSetState(() => _model.rsFolder = value));
-
-              if (_model.rsFolder != null && _model.rsFolder != '') {
-                FFAppState().addToQuartPhotoList(QuartPhotoStruct(
-                  photo: _model.rsPath2,
-                  folderName: _model.rsFolder,
-                ));
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      'Photo is combinationed success!',
-                      style: TextStyle(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 22.0,
-                      ),
-                    ),
-                    duration: Duration(milliseconds: 2000),
-                    backgroundColor: FlutterFlowTheme.of(context).secondary,
-                  ),
-                );
+                }
+                setState(() {
+                  _model.isLoading = false;
+                });
               }
-              setState(() {
-                _model.isLoading = false;
-              });
             }
 
             setState(() {});

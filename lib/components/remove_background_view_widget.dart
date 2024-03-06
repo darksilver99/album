@@ -92,8 +92,8 @@ class _RemoveBackgroundViewWidgetState
                         ),
                       ),
                   ]
-                      .addToStart(SizedBox(height: 32.0))
-                      .addToEnd(SizedBox(height: 32.0)),
+                      .addToStart(SizedBox(height: 16.0))
+                      .addToEnd(SizedBox(height: 128.0)),
                 ),
               ),
             ),
