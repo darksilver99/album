@@ -38,7 +38,9 @@ class _RemoveBackgroundViewWidgetState
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.returnPhotoPath = widget.photoPath;
+      setState(() {
+        _model.returnPhotoPath = widget.photoPath;
+      });
     });
   }
 
