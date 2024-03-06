@@ -81,7 +81,7 @@ class _RemoveBackgroundViewWidgetState
                         _model.returnPhotoPath != '')
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 16.0),
+                            16.0, 0.0, 16.0, 0.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(0.0),
                           child: Image.network(
@@ -92,8 +92,8 @@ class _RemoveBackgroundViewWidgetState
                         ),
                       ),
                   ]
-                      .addToStart(SizedBox(height: 16.0))
-                      .addToEnd(SizedBox(height: 16.0)),
+                      .addToStart(SizedBox(height: 32.0))
+                      .addToEnd(SizedBox(height: 32.0)),
                 ),
               ),
             ),
