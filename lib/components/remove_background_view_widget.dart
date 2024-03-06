@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -103,8 +105,8 @@ class _RemoveBackgroundViewWidgetState
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(0.0),
-                  child: Image.network(
-                    _model.returnPhotoPath!,
+                  child: Image.file(
+                    File(_model.returnPhotoPath!),
                     width: double.infinity,
                     fit: BoxFit.contain,
                   ),
