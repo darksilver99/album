@@ -399,8 +399,47 @@ class _ViewQuartPhotoPageWidgetState extends State<ViewQuartPhotoPageWidget> {
                                                       size: 32.0,
                                                     ),
                                                   ),
-                                                  if (false)
-                                                    Icon(
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      await actions
+                                                          .dowloadImage(
+                                                        photoListItem.photo,
+                                                      );
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            'Download completed.',
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize: 22.0,
+                                                            ),
+                                                          ),
+                                                          duration: Duration(
+                                                              milliseconds:
+                                                                  2000),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .success,
+                                                        ),
+                                                      );
+                                                    },
+                                                    child: Icon(
                                                       Icons
                                                           .download_for_offline_rounded,
                                                       color:
@@ -409,6 +448,7 @@ class _ViewQuartPhotoPageWidgetState extends State<ViewQuartPhotoPageWidget> {
                                                               .secondary,
                                                       size: 32.0,
                                                     ),
+                                                  ),
                                                 ],
                                               ),
                                             ),
