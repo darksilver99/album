@@ -1,5 +1,6 @@
 import '/backend/schema/structs/index.dart';
 import '/components/no_photo_view_widget.dart';
+import '/components/remove_background_view_widget.dart';
 import '/components/select_quart_album_view_widget.dart';
 import '/flutter_flow/flutter_flow_swipeable_stack.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -95,6 +96,28 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
                         : FocusScope.of(context).unfocus(),
                     child: Padding(
                       padding: MediaQuery.viewInsetsOf(context),
+                      child: RemoveBackgroundViewWidget(
+                        photoPath: _model.rsPath!,
+                      ),
+                    ),
+                  );
+                },
+              ).then((value) => safeSetState(() => _model.rsPath2 = value));
+
+              await showModalBottomSheet(
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                enableDrag: false,
+                useSafeArea: true,
+                context: context,
+                builder: (context) {
+                  return GestureDetector(
+                    onTap: () => _model.unfocusNode.canRequestFocus
+                        ? FocusScope.of(context)
+                            .requestFocus(_model.unfocusNode)
+                        : FocusScope.of(context).unfocus(),
+                    child: Padding(
+                      padding: MediaQuery.viewInsetsOf(context),
                       child: SelectQuartAlbumViewWidget(),
                     ),
                   );
@@ -103,7 +126,7 @@ class _QuartPhotoPageWidgetState extends State<QuartPhotoPageWidget> {
 
               if (_model.rsFolder != null && _model.rsFolder != '') {
                 FFAppState().addToQuartPhotoList(QuartPhotoStruct(
-                  photo: _model.rsPath,
+                  photo: _model.rsPath2,
                   folderName: _model.rsFolder,
                 ));
                 ScaffoldMessenger.of(context).showSnackBar(
